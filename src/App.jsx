@@ -3,46 +3,60 @@ import Hero from "./components/Hero";
 import Features from "./components/Features";
 import DashboardPreview from "./components/DashboardPreview";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-white text-gray-900">
       <Navbar />
       <main>
         <Hero />
-        <Features />
         <section id="menu" className="py-16">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold tracking-tight">Today’s Menu</h2>
-                <p className="text-sm text-slate-600">Fetched via API in the full app</p>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex items-end justify-between gap-4 flex-wrap">
+              <div>
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900">Today’s Menu</h2>
+                <p className="mt-2 text-gray-600">Hand-picked dishes served fresh. Availability may vary.</p>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {["Chapati", "Rice", "Dal", "Seasonal Veg", "Curd", "Salad", "Papad", "Sweet"].map((m) => (
-                  <div key={m} className="rounded-xl border border-slate-200 p-4 hover:shadow-sm transition-shadow">
-                    <div className="h-20 rounded-lg bg-gradient-to-br from-slate-100 to-slate-50 mb-3" />
-                    <p className="font-medium">{m}</p>
-                    <p className="text-sm text-slate-600">Included in standard meal</p>
+              <a href="#" className="text-emerald-700 font-medium hover:underline">See full menu →</a>
+            </div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: "Paneer Tikka Bowl", price: 90, tag: "Best seller" },
+                { title: "Veg Fried Rice", price: 70, tag: "Student favorite" },
+                { title: "Masala Dosa", price: 60, tag: "Crispy" },
+                { title: "Dal Makhani", price: 65, tag: "Rich & creamy" },
+                { title: "Chole Bhature", price: 85, tag: "Hearty" },
+                { title: "Lemon Rice", price: 55, tag: "Light" },
+              ].map(({ title, price, tag }) => (
+                <div key={title} className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition">
+                  <div className="aspect-video rounded-xl bg-gradient-to-tr from-emerald-100 to-cyan-100" />
+                  <div className="mt-4 flex items-start justify-between">
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{title}</h3>
+                      <p className="text-sm text-gray-600">{tag}</p>
+                    </div>
+                    <div className="text-emerald-700 font-semibold">₹{price}</div>
                   </div>
-                ))}
-              </div>
+                  <button className="mt-4 w-full inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-white hover:bg-emerald-700 transition">
+                    Add to order
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
         </section>
+        <Features />
         <DashboardPreview />
       </main>
-      <footer className="border-t border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 py-8 text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-gray-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 text-sm text-gray-600 flex items-center justify-between">
           <p>© {new Date().getFullYear()} MessEase. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-slate-900">Privacy</a>
-            <a href="#" className="hover:text-slate-900">Terms</a>
-            <a href="#" className="hover:text-slate-900">Contact</a>
+            <a href="#" className="hover:text-gray-900">Privacy</a>
+            <a href="#" className="hover:text-gray-900">Terms</a>
+            <a href="#" className="hover:text-gray-900">Contact</a>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
-export default App;
